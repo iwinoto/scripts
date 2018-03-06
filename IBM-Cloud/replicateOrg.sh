@@ -3,11 +3,9 @@
 ORG=$1
 USERS=$2
 
-echo ORG=$ORG
-echo USERS=$USERS
-
 SPACE=dev
-REGIONS='au-syd eu-de eu-gb us-east us-south'
+#REGIONS='au-syd eu-de eu-gb us-east us-south'
+REGIONS=$(bx regions | awk ''/.-./' {print $1}' -)
 SPACE_ROLES='SpaceManager SpaceDeveloper SpaceAuditor'
 
 for REGION in $REGIONS
