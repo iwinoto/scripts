@@ -4,8 +4,17 @@ ORG=
 USERS=
 SPACE=dev
 REGION=
-ORG_ROLES="OrgManager BillingManager OrgAuditor"
-SPACE_ROLES="SpaceManager SpaceDeveloper SpaceAuditor"
+# Dynamically get roles from command line help
+# RULE 1: Look for first row starting with ROLES:, flag it and get the row number
+# RULE 2: If we've hit ROLES:, print first col of remaining rows
+ORG_ROLES=$(bx account org-role-set -h | \
+  awk ' \
+    /^ *ROLES:/ { rolesFound=1; roleRow=NR}; \
+    (rolesFound && NR>roleRow) {print $1}' - )
+SPACE_ROLES=$(bx account space-role-set -h | \
+  awk ' \
+    /^ *ROLES:/ { rolesFound=1; roleRow=NR}; \
+    (rolesFound && NR>roleRow) {print $1}' - )
 
 print_help()
 {
@@ -19,7 +28,7 @@ print_help()
   echo "Arguments:"
   echo "ORG-NAME  IBM Cloud Organisation (Org) to invite users to."
   echo "          Org will be created if it does not exist."
-  echo "Users     Space separated list of users to invite to Org."
+  echo "USERS     Space separated list of users to invite to Org."
   echo "          Users will be provided with the following roles:"
   echo "          ORG ROLES:"
   for ROLE in $ORG_ROLES
@@ -33,18 +42,12 @@ print_help()
   done
   echo
   echo "Options are:"
-  echo "-u  [REQUIRED]  Space separated list of users to invite to Org."
-  echo "                Users will be provided with the following roles:"
-  for ROLE in $SPACE_ROLES
-  do
-    printf '%b' "\t\t\t$ROLE\n"
-  done
   echo "-s  [OPTIONAL]  Default space to add to replicated Org."
   echo "                Defaults to 'dev'"
   echo "-r  [OPTIONAL]  IBM Cloud region of Org to invite users to."
   echo "                Defaults to currently logged in region."
   echo "                Must be one of:"
-  printf '%b' "`(bx regions | awk ''/.-./' {print "\t\t\t",$1}' -)`\n"
+  printf '%b' "`(bx regions | awk 'NR>3 {print "\t\t\t",$1}' -)`\n"
   echo "-h  Print this message."
   echo
   exit 0
@@ -101,7 +104,16 @@ else
   exit 1
 fi
 
-if [ -n "$REGION" ]
+if [ -n "$DEBUG" ]; then
+  echo ORG="$ORG"
+  echo USERS="$USERS"
+  echo SPACE="$SPACE"
+  echo REGION="$REGION"
+  echo ORG_ROLES="$ORG_ROLES"
+  echo SPACE_ROLES="$SPACE_ROLES"
+fi
+
+if [ -n "$REGION" ]; then
   bx target -r $REGION
 fi
 bx account org-create $ORG

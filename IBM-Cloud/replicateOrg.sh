@@ -4,11 +4,21 @@ ORG=
 USERS=
 
 SPACE=dev
-REGIONS=$(bx regions | awk ''/.-./' {print $1}' -)
-SPACE_ROLES='SpaceManager SpaceDeveloper SpaceAuditor'
+# First 3 lines of 'bx regions' is informational.
+# 'NR>3' tells 'awk' to only process rows after row 3.
+REGIONS=$(bx regions | awk 'NR>3 {print $1}' -)
+#SPACE_ROLES='SpaceManager SpaceDeveloper SpaceAuditor'
+# Dynamically get roles from command line help
+# RULE 1: Look for first row starting with ROLES:, flag it and get the row number
+# RULE 2: If we've hit ROLES:, print first col of remaining rows
+SPACE_ROLES=$(bx account space-role-set -h | \
+  awk ' \
+    /^ *ROLES:/ { rolesFound=1; roleRow=NR}; \
+    (rolesFound && NR>roleRow) {print $1}' - )
 
 print_help()
 {
+  # Using 'printf' to allow formatting with ''\t', etc.
   echo
   echo "Replice an IBM Cloud Organisation to other regions."
   echo "Pre-requisite: You MUST be logged in to IBM Cloud with 'bx login'."
@@ -34,7 +44,10 @@ print_help()
   echo "                replicate Org to."
   echo "                Defaults to all regions."
   echo "                Must be at least one of:"
-  printf '%b' "`(bx regions | awk ''/.-./' {print "\t\t\t",$1}' -)`\n"
+  for REGION in $REGIONS
+  do
+    printf '%b' "\t\t\t$REGION\n"
+  done
   echo "-h  Print this message."
   echo
 }
@@ -75,7 +88,7 @@ do
 done
 
 shift $(($OPTIND -1))
-if [ -n $1 ]; then
+if [ -n "$1" ]; then
   ORG=$1
 else
   echo "Argument ORG-NAME missing."
@@ -85,6 +98,8 @@ fi
 
 if [ -z "$USERS" ]; then
   echo "No users provided. Getting all users for Org $ORG."
+  # First 2 lines of 'bx account -a' is informational.
+  # 'NR>2' tells 'awk' to only process rows after row 2.
   USERS=$(bx account org-users $ORG -a | awk 'NR>2 {print $1}' -)
 
   for USER in $USERS
@@ -99,7 +114,7 @@ do
 
   bx account org-replicate $ORG $REGION
 
-  if [ -n "$SPACE" ]
+  if [ -n "$SPACE" ]; then
     echo "Adding space $SPACE to Org $ORG in region $REGION"
     bx target -r $REGION -o $ORG
     bx account space-create $SPACE
