@@ -17,7 +17,8 @@ print_help()
   echo "$0 [-s <Default Org space> -r <IBM Cloud region>] ORG-NAME USERS"
   echo
   echo "Arguments:"
-  echo "ORG-NAME  IBM Cloud Organisation (Org) to replicate."
+  echo "ORG-NAME  IBM Cloud Organisation (Org) to invite users to."
+  echo "          Org will be created if it does not exist."
   echo "Users     Space separated list of users to invite to Org."
   echo "          Users will be provided with the following roles:"
   echo "          ORG ROLES:"
@@ -38,7 +39,6 @@ print_help()
   do
     printf '%b' "\t\t\t$ROLE\n"
   done
-  echo "-o  [REQUIRED]  IBM Cloud Organisation (Org) to invite users to."
   echo "-s  [OPTIONAL]  Default space to add to replicated Org."
   echo "                Defaults to 'dev'"
   echo "-r  [OPTIONAL]  IBM Cloud region of Org to invite users to."
