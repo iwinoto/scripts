@@ -1,11 +1,11 @@
 #!/bin/bash
 
-USERS=
 ORG=
+USERS=
 SPACE=dev
-REGION="au-syd"
+REGION=
 ORG_ROLES="OrgManager BillingManager OrgAuditor"
-SPACE_ROLES='SpaceManager SpaceDeveloper SpaceAuditor'
+SPACE_ROLES="SpaceManager SpaceDeveloper SpaceAuditor"
 
 print_help()
 {
@@ -101,6 +101,9 @@ else
   exit 1
 fi
 
+if [ -n "$REGION" ]
+  bx target -r $REGION
+fi
 bx account org-create $ORG
 bx target -o $ORG
 bx account space-create $SPACE
