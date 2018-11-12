@@ -4,6 +4,7 @@
 # Token is exported to BEARER_TOKEN
 # Use 'source' to execute this script
 
-export BEARER_TOKEN=$(curl -X POST 'https://iam.ng.bluemix.net/identity/token' -d "apikey=$BLUEMIX_API_KEY&grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey" -H "Content-Type: application/x-www-form-urlencoded" | jq -r .access_token)
+#export BEARER_TOKEN=$(curl -X POST 'https://iam.ng.bluemix.net/identity/token' -d "apikey=$BLUEMIX_API_KEY&grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey" -H "Content-Type: application/x-www-form-urlencoded" | jq -r .access_token)
+export BEARER_TOKEN=$(ibmcloud iam oauth-tokens | awk '{print $4}')
 
 echo BEARER_TOKEN set
