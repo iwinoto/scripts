@@ -40,7 +40,7 @@ print_help()
   done
   echo "-s  [OPTIONAL]  Default space to add to replicated Org."
   echo "                Defaults to 'dev'"
-  echo "-r  [OPTIONAL]  Space separated list of IBM Cloud regions to"
+  echo "-r  [OPTIONAL]  Comma separated list of IBM Cloud regions to"
   echo "                replicate Org to."
   echo "                Defaults to all regions."
   echo "                Must be at least one of:"
@@ -62,7 +62,7 @@ do
         SPACE=$OPTARG
         ;;
       "r")
-        REGIONS=$OPTARG
+        REGIONS=$(echo $OPTARG | tr ',;' ' ')
         ;;
       "h")
         print_help
