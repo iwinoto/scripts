@@ -14,7 +14,7 @@ API key
 Use a task based tool like `make` or `gradle`
 
 ## Terminal session...
-```
+```sh
 # Export API key to $BLUEMIX_API_KEY from API key json file
 $ export BLUEMIX_API_KEY=$(cat "<API key json file" | jq -r .apiKey)
 $ ibmcloud login -a https://api.au-syd.bluemix.net
@@ -348,3 +348,4 @@ OK
 $ bx account space-role-set sunibabu@in.ibm.com IBM-BT dev SpaceManager
 Assigning role SpaceManager to user sunibabu@in.ibm.com in org IBM-BT / space dev as bmxfunc1@us.ibm.com...
 OK
+```
