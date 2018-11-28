@@ -1,0 +1,12 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev_rolebinding
+subjects:
+- kind: User
+  name: https://iam.ng.bluemix.net/IAM#iwinoto@gmail.com
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: dev_role
+  apiGroup: rbac.authorization.k8s.io
