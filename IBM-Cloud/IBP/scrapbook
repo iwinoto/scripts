@@ -1,0 +1,165 @@
+command="curl -v -X POST \
+    $API_ENDPOINT/ak/api/v1/kubernetes/components/ca \
+    -H \"Content-Type: application/json\" \
+    -H \"Authorization: Bearer $access_token\" \
+    -d '$payload'
+    "
+
+
+
+    Iwans-MacBook-Pro:IBP iwinoto$ curl -v -X POST https://7c4817aa9a9c4fbeb60781646c2b29af-optools.uss02.blockchain.cloud.ibm.com/ak/api/v1/kubernetes/components/ca -H "Content-Type: application/json" -H "Authorization: Bearer eyJraWQiOiIyMDE5MDIwNCIsImFsZyI6IlJTMjU2In0.eyJpYW1faWQiOiJpYW0tU2VydmljZUlkLWQ3NDJhNzVlLTc4MTMtNGUwMS05MjA1LTgzM2ZhZDY0MTk1YSIsImlkIjoiaWFtLVNlcnZpY2VJZC1kNzQyYTc1ZS03ODEzLTRlMDEtOTIwNS04MzNmYWQ2NDE5NWEiLCJyZWFsbWlkIjoiaWFtIiwiaWRlbnRpZmllciI6IlNlcnZpY2VJZC1kNzQyYTc1ZS03ODEzLTRlMDEtOTIwNS04MzNmYWQ2NDE5NWEiLCJzdWIiOiJTZXJ2aWNlSWQtZDc0MmE3NWUtNzgxMy00ZTAxLTkyMDUtODMzZmFkNjQxOTVhIiwic3ViX3R5cGUiOiJTZXJ2aWNlSWQiLCJhY2NvdW50Ijp7InZhbGlkIjp0cnVlLCJic3MiOiJlOTc0YjMzNjY0OTg5YjI5ODZiZTRhNTM5ZTQwODc2MCJ9LCJpYXQiOjE1NjM4NDU3OTEsImV4cCI6MTU2Mzg0OTM5MSwiaXNzIjoiaHR0cHM6Ly9pYW0uY2xvdWQuaWJtLmNvbS9pZGVudGl0eSIsImdyYW50X3R5cGUiOiJ1cm46aWJtOnBhcmFtczpvYXV0aDpncmFudC10eXBlOmFwaWtleSIsInNjb3BlIjoiaWJtIG9wZW5pZCIsImNsaWVudF9pZCI6ImRlZmF1bHQiLCJhY3IiOjEsImFtciI6WyJwd2QiXX0.S2XxF90Q9D3s10_J06gBTDWHxEV_JBDR_fRPfJK3QMusLvbVaMlknAqXsF57N5IAWRh7ei6zvinZnPUVi1alh3RXNCbTn1ilocX-xrr0mUb1576U9GdZFLCvBwQrPd8OTWM6-bMTnib8obMKZzgl9b0RmYqoBpvfCE4Z4WuFs3It-t8B15OlC4SQEXnZhnZgvFD_NGO-UuC6VcUkJoyeG6Mrrk0CBfb7eG7cJrRi-tz5FY-GTXm-CPSHVFBMQ4HmlJo5qo94gDSTEzb8V3zZllBIEfARWvYnoSICXrE9V_D2dbSW3u7DwBXWqMrs7v5TrEXYrQ2ij66lG7C3FtzfBQ" -d '{"display_name": "Ordering Service CA", "enroll_id": "admin", "enroll_secret": "adminpw" }'
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 52.116.156.226...
+* TCP_NODELAY set
+* Connected to 7c4817aa9a9c4fbeb60781646c2b29af-optools.uss02.blockchain.cloud.ibm.com (52.116.156.226) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/cert.pem
+  CApath: none
+* TLSv1.2 (OUT), TLS handshake, Client hello (1):
+* TLSv1.2 (IN), TLS handshake, Server hello (2):
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+* TLSv1.2 (OUT), TLS change cipher, Client hello (1):
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+* TLSv1.2 (IN), TLS change cipher, Client hello (1):
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+*  subject: CN=*.uss02.blockchain.cloud.ibm.com
+*  start date: May 31 04:12:22 2019 GMT
+*  expire date: Aug 29 04:12:22 2019 GMT
+*  subjectAltName: host "7c4817aa9a9c4fbeb60781646c2b29af-optools.uss02.blockchain.cloud.ibm.com" matched cert's "*.uss02.blockchain.cloud.ibm.com"
+*  issuer: C=US; O=Let's Encrypt; CN=Let's Encrypt Authority X3
+*  SSL certificate verify ok.
+> POST /ak/api/v1/kubernetes/components/ca HTTP/1.1
+> Host: 7c4817aa9a9c4fbeb60781646c2b29af-optools.uss02.blockchain.cloud.ibm.com
+> User-Agent: curl/7.54.0
+> Accept: */*
+> Content-Type: application/json
+> Authorization: Bearer eyJraWQiOiIyMDE5MDIwNCIsImFsZyI6IlJTMjU2In0.eyJpYW1faWQiOiJpYW0tU2VydmljZUlkLWQ3NDJhNzVlLTc4MTMtNGUwMS05MjA1LTgzM2ZhZDY0MTk1YSIsImlkIjoiaWFtLVNlcnZpY2VJZC1kNzQyYTc1ZS03ODEzLTRlMDEtOTIwNS04MzNmYWQ2NDE5NWEiLCJyZWFsbWlkIjoiaWFtIiwiaWRlbnRpZmllciI6IlNlcnZpY2VJZC1kNzQyYTc1ZS03ODEzLTRlMDEtOTIwNS04MzNmYWQ2NDE5NWEiLCJzdWIiOiJTZXJ2aWNlSWQtZDc0MmE3NWUtNzgxMy00ZTAxLTkyMDUtODMzZmFkNjQxOTVhIiwic3ViX3R5cGUiOiJTZXJ2aWNlSWQiLCJhY2NvdW50Ijp7InZhbGlkIjp0cnVlLCJic3MiOiJlOTc0YjMzNjY0OTg5YjI5ODZiZTRhNTM5ZTQwODc2MCJ9LCJpYXQiOjE1NjM4NDU3OTEsImV4cCI6MTU2Mzg0OTM5MSwiaXNzIjoiaHR0cHM6Ly9pYW0uY2xvdWQuaWJtLmNvbS9pZGVudGl0eSIsImdyYW50X3R5cGUiOiJ1cm46aWJtOnBhcmFtczpvYXV0aDpncmFudC10eXBlOmFwaWtleSIsInNjb3BlIjoiaWJtIG9wZW5pZCIsImNsaWVudF9pZCI6ImRlZmF1bHQiLCJhY3IiOjEsImFtciI6WyJwd2QiXX0.S2XxF90Q9D3s10_J06gBTDWHxEV_JBDR_fRPfJK3QMusLvbVaMlknAqXsF57N5IAWRh7ei6zvinZnPUVi1alh3RXNCbTn1ilocX-xrr0mUb1576U9GdZFLCvBwQrPd8OTWM6-bMTnib8obMKZzgl9b0RmYqoBpvfCE4Z4WuFs3It-t8B15OlC4SQEXnZhnZgvFD_NGO-UuC6VcUkJoyeG6Mrrk0CBfb7eG7cJrRi-tz5FY-GTXm-CPSHVFBMQ4HmlJo5qo94gDSTEzb8V3zZllBIEfARWvYnoSICXrE9V_D2dbSW3u7DwBXWqMrs7v5TrEXYrQ2ij66lG7C3FtzfBQ
+> Content-Length: 90
+> 
+* upload completely sent off: 90 out of 90 bytes
+
+
+
+{
+  "resources":{
+    "ca":{
+      "limits":{
+        "cpu":"2",
+        "memory":"4096M"
+      },
+      "requests":{
+        "cpu":"10m",
+        "memory":"10M"
+      }
+    }
+  }
+}
+
+
+components="[
+  {
+    "admins": [
+      "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlDVHpDQ0FmV2dBd0lCQWdJVWVPUE5iUFJ2VGsySTJsdHhKM3dIYlFEOUpZZ3dDZ1lJS29aSXpqMEVBd0l3DQphREVMTUFrR0ExVUVCaE1DVlZNeEZ6QVZCZ05WQkFnVERrNXZjblJvSUVOaGNtOXNhVzVoTVJRd0VnWURWUVFLDQpFd3RJZVhCbGNteGxaR2RsY2pFUE1BMEdBMVVFQ3hNR1JtRmljbWxqTVJrd0Z3WURWUVFERXhCbVlXSnlhV010DQpZMkV0YzJWeWRtVnlNQjRYRFRFNU1EY3lNekF6TkRFd01Gb1hEVEl3TURjeU1qQXpORFl3TUZvd0pURVBNQTBHDQpBMVVFQ3hNR1kyeHBaVzUwTVJJd0VBWURWUVFERXdsdmNtY3hZV1J0YVc0d1dUQVRCZ2NxaGtqT1BRSUJCZ2dxDQpoa2pPUFFNQkJ3TkNBQVFCNGdSZHBTRzVIMmhPYjRKZFFUenorbkM4a1o2ekg3Y1pOTUdNb2VHeHFTSDdIeXBpDQpka3FlakRCV202Zzlmbk95M05KaHBuWS9CTDdQUlRTS0ZQbmhvNEcvTUlHOE1BNEdBMVVkRHdFQi93UUVBd0lIDQpnREFNQmdOVkhSTUJBZjhFQWpBQU1CMEdBMVVkRGdRV0JCVGdMWUt4MXFXM0NIcTEySWZUN0hHSS9tTWNXekFmDQpCZ05WSFNNRUdEQVdnQlRFT0k2SmNHaHlwN2syK3lacHJRWkR0NkJma3pCY0JnZ3FBd1FGQmdjSUFRUlFleUpoDQpkSFJ5Y3lJNmV5Sm9aaTVCWm1acGJHbGhkR2x2YmlJNklpSXNJbWhtTGtWdWNtOXNiRzFsYm5SSlJDSTZJbTl5DQpaekZoWkcxcGJpSXNJbWhtTGxSNWNHVWlPaUpqYkdsbGJuUWlmWDB3Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUloDQpBS0hlVHBmMHNqeHJ6aWk5anFtM24xb2NOVmVSTW5JNUU1b0NtanhKRDhPZUFpQU1CQUc4YUZFa093cmptNjFuDQpoaTVXUFVmeUJTYUdVNnVLRHlSYTNuaU9LUT09DQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tDQo="
+    ],
+    "display_name": "Org1 MSP",
+    "host_url": "https://7c4817aa9a9c4fbeb60781646c2b29af-optools.uss02.blockchain.cloud.ibm.com",
+    "id": "org1msp_0",
+    "location": "-",
+    "msp_id": "org1msp",
+    "root_certs": [
+      "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNGekNDQWIyZ0F3SUJBZ0lVWDVQS3NqY1FlOFlSaW12bmI2Ym5VTEJrRFdrd0NnWUlLb1pJemowRUF3SXcKYURFTE1Ba0dBMVVFQmhNQ1ZWTXhGekFWQmdOVkJBZ1REazV2Y25Sb0lFTmhjbTlzYVc1aE1SUXdFZ1lEVlFRSwpFd3RJZVhCbGNteGxaR2RsY2pFUE1BMEdBMVVFQ3hNR1JtRmljbWxqTVJrd0Z3WURWUVFERXhCbVlXSnlhV010ClkyRXRjMlZ5ZG1WeU1CNFhEVEU1TURjeU16QXpNVGt3TUZvWERUTTBNRGN4T1RBek1Ua3dNRm93YURFTE1Ba0cKQTFVRUJoTUNWVk14RnpBVkJnTlZCQWdURGs1dmNuUm9JRU5oY205c2FXNWhNUlF3RWdZRFZRUUtFd3RJZVhCbApjbXhsWkdkbGNqRVBNQTBHQTFVRUN4TUdSbUZpY21sak1Sa3dGd1lEVlFRREV4Qm1ZV0p5YVdNdFkyRXRjMlZ5CmRtVnlNRmt3RXdZSEtvWkl6ajBDQVFZSUtvWkl6ajBEQVFjRFFnQUVjcEJNZUJFcFQ4V25LSWQzTjlGUlhPNUIKVmI3ZldYUmtvejBzeGdHRTJhZCtzYTcyOURCWHV5RmRrWXlYV2pxeDQwd0h2N0dyNUx1c3FxaE5MbTQwSUtORgpNRU13RGdZRFZSMFBBUUgvQkFRREFnRUdNQklHQTFVZEV3RUIvd1FJTUFZQkFmOENBUUV3SFFZRFZSME9CQllFCkZNUTRqb2x3YUhLbnVUYjdKbW10QmtPM29GK1RNQW9HQ0NxR1NNNDlCQU1DQTBnQU1FVUNJUUNQNWgrd0lGSGgKTTNTQ2xKUDZMK2JWQ3ZFV1UrL3pqVFVudEhnOVNubHRNZ0lnVXFOU0JSc1JMWTBmaElLNEtUUkRRdVVJTFlKOQpySEpWZjNGY2VsdGpmOFU9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+    ],
+    "scheme_version": "v1",
+    "tags": [
+      "msp"
+    ],
+    "timestamp": 1563853584309,
+    "tls_root_certs": [
+      "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNJVENDQWNpZ0F3SUJBZ0lVS2pZVFpjNWEzaHpDVzZYSUhTT2V0eWdxcldNd0NnWUlLb1pJemowRUF3SXcKWWpFTE1Ba0dBMVVFQmhNQ1ZWTXhGekFWQmdOVkJBZ1REazV2Y25Sb0lFTmhjbTlzYVc1aE1SUXdFZ1lEVlFRSwpFd3RJZVhCbGNteGxaR2RsY2pFUE1BMEdBMVVFQ3hNR1JtRmljbWxqTVJNd0VRWURWUVFERXdwUGNtY3hRMEV0CmRHeHpNQjRYRFRFNU1EY3lNekF6TVRrd01Gb1hEVE0wTURjeE9UQXpNVGt3TUZvd1lqRUxNQWtHQTFVRUJoTUMKVlZNeEZ6QVZCZ05WQkFnVERrNXZjblJvSUVOaGNtOXNhVzVoTVJRd0VnWURWUVFLRXd0SWVYQmxjbXhsWkdkbApjakVQTUEwR0ExVUVDeE1HUm1GaWNtbGpNUk13RVFZRFZRUURFd3BQY21jeFEwRXRkR3h6TUZrd0V3WUhLb1pJCnpqMENBUVlJS29aSXpqMERBUWNEUWdBRVZIblpMc1dHQUZwQ0gxMm1pWXloQ3JTYnUydnhaUHkrU0h1cmxaS0oKdzZlM0NHRGhPQW5hb0d0bmtkbERENC8vZmtnNDlHd3dxNWpsODVEalBCamJEcU5jTUZvd0RnWURWUjBQQVFILwpCQVFEQWdFR01CSUdBMVVkRXdFQi93UUlNQVlCQWY4Q0FRRXdIUVlEVlIwT0JCWUVGTlljZFEzYjVTdS85MFVrCjV6RDJNVlQ3Nk1BbU1CVUdBMVVkRVFRT01BeUhCTGl0QlRXSEJBcE13Yzh3Q2dZSUtvWkl6ajBFQXdJRFJ3QXcKUkFJZ2N6MzdieEVMVHlHSmhkc0IzMXhvMHJOZEVKZTd0NlJBYzM5VllEZlJENFFDSUZCNk5ZNVBSMUpXNWJjNQpaSGNpQ2JVWStOZk80L0JPZks2aUlodm9VZ1hxCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+    ],
+    "type": "msp"
+  },
+  {
+    "api_url": "https://184.173.5.53:31440",
+    "ca_name": "ca",
+    "display_name": "Ordering Service CA",
+    "id": "OrderingServiceCA",
+    "location": "ibm_saas",
+    "operations_url": "https://184.173.5.53:31612",
+    "resource_warnings": "none",
+    "resources": {
+      "ca": {
+        "limits": {
+          "cpu": "2",
+          "memory": "4096M"
+        },
+        "requests": {
+          "cpu": "10m",
+          "memory": "10M"
+        }
+      }
+    },
+    "scheme_version": "v1",
+    "storage": {
+      "ca": {
+        "class": "local",
+        "size": "1Gi"
+      }
+    },
+    "tags": [
+      "fabric-ca",
+      "ibm_saas"
+    ],
+    "timestamp": 1563852248734,
+    "tls_cert": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlDZFRDQ0FkNmdBd0lCQWdJSmRTWGxtSkVuNy92cU1BMEdDU3FHU0liM0RRRUJCUVVBTUhJeEZUQVRCZ05WDQpCQU1URERFNE5DNHhOek11TlM0MU16RUxNQWtHQTFVRUJoTUNWVk14RnpBVkJnTlZCQWdURGs1dmNuUm9JRU5oDQpjbTlzYVc1aE1SQXdEZ1lEVlFRSEV3ZFNZV3hsYVdkb01Rd3dDZ1lEVlFRS0V3TkpRazB4RXpBUkJnTlZCQXNUDQpDa0pzYjJOclkyaGhhVzR3SGhjTk1Ua3dOekl6TURNeU5EQTBXaGNOTWpBd056SXlNRE15TkRBMFdqQnlNUlV3DQpFd1lEVlFRREV3d3hPRFF1TVRjekxqVXVOVE14Q3pBSkJnTlZCQVlUQWxWVE1SY3dGUVlEVlFRSUV3NU9iM0owDQphQ0JEWVhKdmJHbHVZVEVRTUE0R0ExVUVCeE1IVW1Gc1pXbG5hREVNTUFvR0ExVUVDaE1EU1VKTk1STXdFUVlEDQpWUVFMRXdwQ2JHOWphMk5vWVdsdU1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRQ1BhaTE0DQoxdEZBVTd2dnhTNzhtSmdxd0lKUEJuTnFFcHlCWHlSaUtaY2RTY1hlSjRHbGdCRGZwQkJYbDdEOVNrMzRQYUFrDQo1aXl6dnpWZndRd1huVk1CQzRzRmxFTTdDaFVQVXpnWTRoeUN5aC9yWUFDUTZUdE5iVzdJSTlKRS96TXJPMC84DQovQ1ErTHk3YURnRFpwRVZTUjhsYUdaKzFwMHFvenFmL20yajhUd0lEQVFBQm94TXdFVEFQQmdOVkhSRUVDREFHDQpod1M0clFVMU1BMEdDU3FHU0liM0RRRUJCUVVBQTRHQkFEdlNFWVlNeUlMOHVwNUdXc1U0TFVmU0FmeWhIaXdzDQpnblVMaFcrSkc3NUNSUk9aWHAySWljM1RONjVIbXhGYWRMdHNnNmdxUDRST2QzM1d0VUE2VVBLMkd3azYwVXo3DQpFNURZN1kxbXNESjBkVUJmL2lPYk4zeS9YYWdsVUE0MEhMU0xqbnJmK3ZUeExBYmJXN3hBLzZUUG9zaWdNdlpRDQpYdnMycGFEQ1dZWGQNCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0NCg==",
+    "tlsca_name": "tlsca",
+    "type": "fabric-ca",
+    "version": "1.4.1-1"
+  },
+  {
+    "api_url": "https://184.173.5.53:32564",
+    "ca_name": "ca",
+    "display_name": "Org1 CA",
+    "id": "Org1CA_",
+    "location": "ibm_saas",
+    "operations_url": "https://184.173.5.53:32724",
+    "resource_warnings": "none",
+    "resources": {
+      "ca": {
+        "limits": {
+          "cpu": "2",
+          "memory": "4096M"
+        },
+        "requests": {
+          "cpu": "10m",
+          "memory": "10M"
+        }
+      }
+    },
+    "scheme_version": "v1",
+    "storage": {
+      "ca": {
+        "class": "local",
+        "size": "1Gi"
+      }
+    },
+    "tags": [
+      "fabric-ca",
+      "ibm_saas"
+    ],
+    "timestamp": 1563852241032,
+    "tls_cert": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlDZFRDQ0FkNmdBd0lCQWdJSmNWbHduRXIwQ3cwS01BMEdDU3FHU0liM0RRRUJCUVVBTUhJeEZUQVRCZ05WDQpCQU1URERFNE5DNHhOek11TlM0MU16RUxNQWtHQTFVRUJoTUNWVk14RnpBVkJnTlZCQWdURGs1dmNuUm9JRU5oDQpjbTlzYVc1aE1SQXdEZ1lEVlFRSEV3ZFNZV3hsYVdkb01Rd3dDZ1lEVlFRS0V3TkpRazB4RXpBUkJnTlZCQXNUDQpDa0pzYjJOclkyaGhhVzR3SGhjTk1Ua3dOekl6TURNeU16VTFXaGNOTWpBd056SXlNRE15TXpVMVdqQnlNUlV3DQpFd1lEVlFRREV3d3hPRFF1TVRjekxqVXVOVE14Q3pBSkJnTlZCQVlUQWxWVE1SY3dGUVlEVlFRSUV3NU9iM0owDQphQ0JEWVhKdmJHbHVZVEVRTUE0R0ExVUVCeE1IVW1Gc1pXbG5hREVNTUFvR0ExVUVDaE1EU1VKTk1STXdFUVlEDQpWUVFMRXdwQ2JHOWphMk5vWVdsdU1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRQ0Y5cWRSDQo4K0tjaHR5ZllPYnpCM3pDcEk3NWtDVkZNWFRrRmc1OTFYUzNLZWMrbzVzM1BEMDVheXFvOGQrdGtUSGdlU1ZMDQpqRXVBS01WdkV3UUl5WDBUNHpLL0Y1UEZrUEl6SDJVNCt2N2dRTTJmTFo5eWRtV1JXYm1SRHoxRk1zYUJUOXFvDQpQQVY3V1hCdTFkalVjMklJcXJlR0JMcExoZzZPR3ZwKzVVajUxd0lEQVFBQm94TXdFVEFQQmdOVkhSRUVDREFHDQpod1M0clFVMU1BMEdDU3FHU0liM0RRRUJCUVVBQTRHQkFDdjBFTU5nZVl0M1ZxUEc2UEpQQllHb3grRkhvS2tRDQowN0o5cXhkU0ZiaUtnMHFySzMrVGlCRlRXNFdXZUY0QTdTSUhIZmVnUnhuRnRyVHg4NEJEaHZkdzJBMVlEY25IDQpETE92YVBnTllyNlpGdXQyMExjREVMVE9rc2NkVFRFelo5LzhqWk9qZ3RIWXRvMHAzczZEY08yNzcvV0pMd294DQp3bmh4S1p5L1R5WEkNCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0NCg==",
+    "tlsca_name": "tlsca",
+    "type": "fabric-ca",
+    "version": "1.4.1-1"
+  }
+]"
