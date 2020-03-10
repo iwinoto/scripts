@@ -1,20 +1,20 @@
 #!/bin/sh
 
-APP_NAME=car-dashboard
+APP_NAME=sec-controls-test
 
 #CLUSTER_TYPE=free
 CLUSTER_TYPE=standard
-CLUSTER_NAME=_STD
+CLUSTER_NAME=ANB-Kub
 CLUSTER_LOCATION=syd01
-CLUSTER_WORKERS=2
-CLUSTER_MC_TYPE=u1c.2x4
+CLUSTER_WORKERS=3
+CLUSTER_MC_TYPE=b3c.4x16
 CLUSTER_HARDWARE=shared
-
-VLAN_PRIV=priv01
-VLAN_PUB=pub01
+# User VLAN IDs. Names no longer work.
+VLAN_PRIV=2821470
+VLAN_PUB=2821472
 
 #KUBE_NAMESPACE=$APP_NAME
-DEF_KUBE_NAMESPACE=car-dashboard
+DEF_KUBE_NAMESPACE=sec-controls-test
 KUBECONFIG_DIR=~/.bluemix/plugins/container-service/clusters/$CLUSTER_NAME
 KUBECONFIG_FILE=$KUBECONFIG_DIR/kube-config-$CLUSTER_LOCATION-$CLUSTER_NAME.yml
 
@@ -23,9 +23,9 @@ IMAGE_NAME=$APP_NAME
 DEF_REGISTRY=registry.au-syd.bluemix.net
 DEF_REGISTRY_NAMESPACE=iwinoto_gmail_funfactory
 
-#bx cr login
-bx cs init
-bx cs cluster-config $CLUSTER_NAME
+#ibmcloud cr login
+ibmcloud ks init
+ibmcloud ks cluster config $CLUSTER_NAME
 
 if [ -f "$KUBECONFIG_FILE" ]; then
   export KUBECONFIG=$KUBECONFIG_FILE

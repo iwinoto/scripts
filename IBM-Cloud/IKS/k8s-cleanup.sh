@@ -10,9 +10,9 @@ kubectl config set-context $(kubectl config current-context) --namespace=default
 #kubectl --namespace $KUBE_NAMESPACE delete ingress $APP_NAME-ingress
 #kubectl --namespace $KUBE_NAMESPACE delete deployment $APP_NAME
 #kubectl --namespace $KUBE_NAMESPACE delete service $APP_NAME
-#bx cs cluster-service-unbind $CLUSTER_NAME $KUBE_NAMESPACE my-conversation-service
-#bx cs cluster-service-unbind $CLUSTER_NAME $KUBE_NAMESPACE speech-to-text-service
-#bx cs cluster-service-unbind $CLUSTER_NAME $KUBE_NAMESPACE text-to-speech-service
+#ibmcloud ks cluster-service-unbind $CLUSTER_NAME $KUBE_NAMESPACE my-conversation-service
+#ibmcloud ks cluster-service-unbind $CLUSTER_NAME $KUBE_NAMESPACE speech-to-text-service
+#ibmcloud ks cluster-service-unbind $CLUSTER_NAME $KUBE_NAMESPACE text-to-speech-service
 #kubectl --namespace $KUBE_NAMESPACE delete secret binding-my-conversation-service
 #kubectl --namespace $KUBE_NAMESPACE delete secret binding-speech-to-text-service
 #kubectl --namespace $KUBE_NAMESPACE delete secret binding-text-to-speech-service

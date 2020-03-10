@@ -3,8 +3,8 @@
 source k8s-setenv.sh
 
 echo -------
-echo bx target
-bx target
+echo ibmcloud target
+ibmcloud target
 echo -------
 echo KUBECONFIG=$KUBECONFIG
 
@@ -16,16 +16,16 @@ if [ -z "$deployed" ]; then
 
   echo Create services
   # conversation
-  bx cf create-service conversation free my-conversation-service
+  ibmcloud cf create-service conversation free my-conversation-service
   # speech-to-text
-  bx cf create-service speech_to_text standard speech-to-text-service
+  ibmcloud cf create-service speech_to_text standard speech-to-text-service
   # text-to-speech
-  bx cf create-service text_to_speech standard text-to-speech-service
+  ibmcloud cf create-service text_to_speech standard text-to-speech-service
 
   echo Bind services to the cluster
-  bx cs cluster-service-bind $CLUSTER_NAME $KUBE_NAMESPACE my-conversation-service
-  bx cs cluster-service-bind $CLUSTER_NAME $KUBE_NAMESPACE speech-to-text-service
-  bx cs cluster-service-bind $CLUSTER_NAME $KUBE_NAMESPACE text-to-speech-service
+  ibmcloud cs cluster-service-bind $CLUSTER_NAME $KUBE_NAMESPACE my-conversation-service
+  ibmcloud cs cluster-service-bind $CLUSTER_NAME $KUBE_NAMESPACE speech-to-text-service
+  ibmcloud cs cluster-service-bind $CLUSTER_NAME $KUBE_NAMESPACE text-to-speech-service
 
   echo Deploy the service to kubernetes
   echo substitute deployment values from environment variables
@@ -46,4 +46,4 @@ fi
 
 # Echo description
 kubectl --namespace $KUBE_NAMESPACE describe deployment car-dashboard
-bx cs workers $CLUSTER_NAME
+ibmcloud ks workers $CLUSTER_NAME
