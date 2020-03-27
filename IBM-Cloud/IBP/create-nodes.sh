@@ -1,25 +1,10 @@
 #!/bin/bash
 # Create IBP nodes using REST API via curl
 # Ref: https://cloud.ibm.com/apidocs/blockchain
+# Ref: https://stackoverflow.com/questions/26701538/how-to-filter-an-array-of-objects-based-on-values-in-an-inner-array-with-jq
 
-API_KEY=$1
-API_ENDPOINT=$2
-access_token=$3
-
-# Get api-key access token
-getAccessToken () {
-  #echo "Getting access token."
-  ID_TOKEN=$(curl -s -X POST \
-    https://iam.cloud.ibm.com/identity/token \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -H "Accept: application/json" \
-    -d "grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey&apikey=$API_KEY")
-    
-  access_token=$(echo $ID_TOKEN | jq -r .access_token)
-  #echo
-  #echo "Access token:"
-  #echo $access_token
-}
+SERVICE_NAME=$1
+KEY_NAME=$2
 
 getPayload_CA () {
   cat <<EOF
@@ -75,6 +60,42 @@ getPayload_Peer () {
 EOF
 }
 
+# get API endpoint and key from service key credentials
+getAPICreds () {
+    _CREDS=$(ibmcloud resource service-keys \
+             --instance-name $SERVICE_NAME --output json | \
+             jq '.[] | select(.name == "'$KEY_NAME'") | .credentials')
+    #echo "credentials for $KEY_NAME: $_CREDS"
+
+    _API_KEY=$(echo $_CREDS | jq -r '.apikey')
+    _API_ENDPOINT=$(echo $_CREDS | jq -r '.api_endpoint')
+    #echo "endpoint: $_API_ENDPOINT"
+    #echo "key: $_API_KEY"
+}
+
+# Get api-key access token
+getAccessToken () {
+  getAPICreds
+  #echo "Getting access token."
+  _TOKEN=$(curl -s -X POST \
+    https://iam.cloud.ibm.com/identity/token \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -H "Accept: application/json" \
+    -d "grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=$_API_KEY")
+    
+  _ACCESS_TOKEN=$(echo $_TOKEN | jq -r .access_token)
+}
+
+getComponents() {
+  #echo "Getting IBP components."
+  _COMPONENTS=$(curl -s -X GET $_API_ENDPOINT/ak/api/v1/components \
+    -H "Content-Type: application/json" \
+       -H "Authorization: Bearer $_ACCESS_TOKEN")
+    
+  #echo $_COMPONENTS
+}
+
+
 # Create CA node
 createNodeCA () {
   #echo
@@ -96,23 +117,12 @@ createNodeCA () {
   curl "${curl_args[@]}"
 }
 
-getComponents() {
-  #echo "Getting IBP components."
-  COMPONENTS=$(curl -s -X GET $API_ENDPOINT/ak/api/v1/components \
-    -H "Content-Type: application/json" \
-       -H "Authorization: Bearer $access_token")
-    
-  #$(echo $COMPONENTS | jq -r .)
-  #echo
-  #echo "IBP Components:"
-  echo $COMPONENTS
-# Ref: https://stackoverflow.com/questions/26701538/how-to-filter-an-array-of-objects-based-on-values-in-an-inner-array-with-jq
-  
-}
-
 getComponent() {
   display_name=$1
-  id=$($getComponents | jq -r '.[] | select( .display_name | contains("$display_name") ) | .id')
+  getComponents
+#  id=$($getComponents | jq -r '.[] | select(.display_name == "'"$display_name"'") | .id')
+#  id=$($getComponents | jq -r '.')
+  id=$(echo ${_COMPONENTS} | jq -r '.[] | select(.display_name == "'"$display_name"'") | .id')
   echo $id
 }
 
@@ -124,6 +134,9 @@ getAccessToken
 # create Ordering Service CA
 #createNodeCA "Ordering Service CA" "admin" "adminpw"
 
-getComponent "Org1 CA"
+
+#getComponents
+echo Component ID for Law Firm 1 MSP: 
+getComponent "Law Firm 1 MSP"
 
 # create peer

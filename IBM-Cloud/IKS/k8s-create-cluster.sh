@@ -13,6 +13,7 @@ if [ "$CLUSTER_TYPE" = "standard" ]; then
   # Create a standard cluster without a config yaml.
   ibmcloud ks cluster create classic \
     --name $CLUSTER_NAME \
+    --version $CLUSTER_VERSION \
     --zone $CLUSTER_LOCATION \
     --workers $CLUSTER_WORKERS \
     --machine-type $CLUSTER_MC_TYPE \
