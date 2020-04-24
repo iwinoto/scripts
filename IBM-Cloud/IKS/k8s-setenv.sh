@@ -1,20 +1,20 @@
 #!/bin/sh
 
-APP_NAME=sec-controls-test
+APP_NAME=
 
 #CLUSTER_TYPE=free
 CLUSTER_TYPE=standard
-CLUSTER_NAME=ANB-Kub
+CLUSTER_NAME=Lygon-IBP
 CLUSTER_LOCATION=syd01
 # get available versions with `ibmcloud ks versions`
 # for IBP, check the supported k8s version. Sometimes default is not supported.
 CLUSTER_VERSION=1.15
-CLUSTER_WORKERS=3
+CLUSTER_WORKERS=1
 CLUSTER_MC_TYPE=b3c.4x16
 CLUSTER_HARDWARE=shared
 # User VLAN IDs. Names no longer work.
-VLAN_PRIV=2821470
-VLAN_PUB=2821472
+VLAN_PRIV=2799566
+VLAN_PUB=2799564
 
 #KUBE_NAMESPACE=$APP_NAME
 DEF_KUBE_NAMESPACE=sec-controls-test

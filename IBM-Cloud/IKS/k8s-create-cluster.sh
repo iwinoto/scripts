@@ -16,7 +16,7 @@ if [ "$CLUSTER_TYPE" = "standard" ]; then
     --version $CLUSTER_VERSION \
     --zone $CLUSTER_LOCATION \
     --workers $CLUSTER_WORKERS \
-    --machine-type $CLUSTER_MC_TYPE \
+    --flavor $CLUSTER_MC_TYPE \
     --hardware $CLUSTER_HARDWARE \
     --public-vlan $VLAN_PUB \
     --private-vlan $VLAN_PRIV
@@ -26,6 +26,6 @@ else
 fi
 
 # Get Kube cluster config
-ibmcloud ks cluster config $CLUSTER_NAME
+ibmcloud ks cluster config --cluster $CLUSTER_NAME
 KUBECONFIG_DIR=~/.bluemix/plugins/container-service/clusters/$CLUSTER_NAME
 export KUBECONFIG=$KUBECONFIG_DIR/kube-config-$CLUSTER_LOCATION-$CLUSTER_NAME.yml

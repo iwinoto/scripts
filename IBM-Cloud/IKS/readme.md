@@ -25,7 +25,8 @@ These environment variables are key in defining the cluster that is created
 * CLUSTER_MC_TYPE
   * Machine type of worker nodes. For example `b3c.4x16`.
   * To get a list of machine types and their descriptions, use `ibmcloud ks flavors --zone <target zone>`
-* CLUSTER_HARDWARE=shared
+* CLUSTER_HARDWARE
+  * [shared | dedicated]
 * VLAN_PRIV
   * User VLAN ID for private network. Names no longer work.
   * To get a list of available VLANs, use `ibmcloud ks vlans --zone <target zone>`
@@ -34,3 +35,9 @@ These environment variables are key in defining the cluster that is created
   * User VLAN ID for public facing network. Names no longer work.
   * To get a list of available VLANs, use `ibmcloud ks vlans --zone <target zone>`
   * You may need to create a VLAN using `ibmcloud sl vlan create`
+
+## Account access set up.
+
+strategy is to create a resource group and an access group for admin access to the resource group.
+
+Access group must have Administrator access to the resource group
