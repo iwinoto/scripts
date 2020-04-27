@@ -9,10 +9,10 @@ ref: https://cloud.ibm.com/docs/Log-Analysis-with-LogDNA/tutorials?topic=LogDNA-
 ibmcloud resource service-instance-create <service instance name> logdna <plan, eg lite> <location, eg au-syd> -g <resource group>
 ```
 
-### Create logDNA service key
+### Create logDNA service key with `Administrator` role name
 
 ```
-ibmcloud resource service-key-create <Service key name. eg logdna-key-admin Administrator --instance-name <service instance name>
+ibmcloud resource service-key-create <Service key name. eg logdna-key-admin> Administrator --instance-name <service instance name>
 ```
 
 ### get logDNA ingestion key

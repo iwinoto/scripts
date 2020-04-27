@@ -12,7 +12,7 @@ ibmcloud resource service-instance-create <service instance name> sysdig-monitor
 ibmcloud resource service-instances --output json
 ```
 
-* Create SysDig service key
+* Create SysDig service key  with `Administrator` role name
 
 ```
 ibmcloud resource service-key-create <Service key name. eg sysdig-monitoy-key-admin> Administrator --instance-name <service instance name>
