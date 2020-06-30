@@ -118,7 +118,7 @@ Reached out to Spencer Krum via slack for help.
 Reponse from Spencer to try version downgrade. Both v0.18.0 and v0.19.0 worked with the community helm chart.
 
 ```
-helm install falco --namespace <namespace eg ibm-observe> --set image.tag=0.19.0 stable/falco
+helm install falco --namespace <namespace eg ibm-observe> --values falco-values.yaml
 ```
 
 Installed successfully and tested via the little test scenario from [Spencer's article](https://gitlab.com/nibalizer/falco-iks).
