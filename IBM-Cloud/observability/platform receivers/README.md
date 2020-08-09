@@ -4,7 +4,7 @@ Logs and metrics from some IBM Cloud platform services instances can be sent to 
 
 IBM Cloud Patform service logs and metrics can be sent to ONE and only ONE instance of LogDNA and Sysdic. Because Platform logs and metrics includes all services in the account regardless of resource group (i.e. which env), we would have to use something like the service instance CRN to filter views for a particular service instances.
 
-Services that are enabled will have documentation describing the data schema that is emitted.
+Services that are enabled will have documentation describing the data schema that is emitted. As an example for IBM Cloudant:
 
 * Log data for Cloudant is [documented here](https://cloud.ibm.com/docs/Cloudant?topic=Cloudant-log-analysis-integration).
 * Metrics for Cloudant is [documented here](https://cloud.ibm.com/docs/Cloudant?topic=Cloudant-monitor-sysdig-pm).
@@ -21,7 +21,12 @@ Therefore it is important to check if any collector instances are already set as
 The following snippet can be used to generate a list of service instances in a resource group have a `default_receiver` parameter set to `true`:
 
 ```sh
-ibmcloud resource service-instances --long --output json | jq -r '.[] | select(.parameters.default_receiver==true) | .name'
+for g in $(ibmcloud resource groups --output json | jq -r '.[].name | @base64'); do \
+   current=$(echo $g | base64 --decode -); \
+   ibmcloud target -g $current > /dev/null; \
+   echo "Platform receivers in group $current"; \
+   ibmcloud resource service-instances --long --output json | jq -r '.[] | select(.parameters.default_receiver==true) | .name'; \
+done
 ```
 
 ## Setting `default_receiver` status
