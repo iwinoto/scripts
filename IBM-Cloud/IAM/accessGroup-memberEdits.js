@@ -1,23 +1,24 @@
+// for testing with nodejs. Remove this if using JavaScript.
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-const asynchXHR = false;
-const accountId = "c15ecdd5890bdc705dd4e448a0a4b68d";
 const apiKey = process.env._API_KEY;
 
+// Account = GBS c/o Lygon 1B Pty Ltd
+const accountId = "c15ecdd5890bdc705dd4e448a0a4b68d";
 // Access group = Security controls research
 const accessGroupId = "AccessGroupId-6720da8b-df19-4dd1-a5a2-475b789baa00";
+// test user
+const userEmail = "Aharon.Rossano@ibm.com";
 
 const identityEndpoint = "https://iam.cloud.ibm.com/identity/";
 const iamEndpoint = "https://iam.cloud.ibm.com/v2/";
 const userEndpoint = "https://user-management.cloud.ibm.com/v2/";
 
-// Aharon Rossano
-const userEmail = "Aharon.Rossano@ibm.com";
-
 var xhr = new XMLHttpRequest();
 xhr.onerror = function () {
     console.log("Request failed");
 };
+const asynchXHR = false;
 
 var userId;
 var groupMembers;
