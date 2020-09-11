@@ -2,27 +2,13 @@
 
 _API_KEY=$1
 
-_ACCOUNT_ID=c15ecdd5890bdc705dd4e448a0a4b68d
+_ACCOUNT_ID=<Account ID>
 
 # Access group = Security controls research
-_ACCESS_GROUP_ID=AccessGroupId-6720da8b-df19-4dd1-a5a2-475b789baa00
+_ACCESS_GROUP_ID=<Access Group ID>
 
 #Aharon Rossano
-_USER_EMAIL=Aharon.Rossano@ibm.com
-#_MEMBER_IAMID=IBMid-55000399XM
-
-getGroupMember () {
-    cat <<EOF
-    {
-        "members": [
-            {
-                "iam_id": "IBMid-55000399XM",
-                "type": "user"
-            }
-        ]
-    }
-EOF
-}
+_USER_EMAIL=<email address>
 
 # Get api-key access token
 getAccessToken () {

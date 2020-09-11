@@ -4,11 +4,11 @@ const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const apiKey = process.env._API_KEY;
 
 // Account = GBS c/o Lygon 1B Pty Ltd
-const accountId = "c15ecdd5890bdc705dd4e448a0a4b68d";
+const accountId = "<Account ID>";
 // Access group = Security controls research
-const accessGroupId = "AccessGroupId-6720da8b-df19-4dd1-a5a2-475b789baa00";
+const accessGroupId = "<Access Group ID>";
 // test user
-const userEmail = "Aharon.Rossano@ibm.com";
+const userEmail = "<User email address>";
 
 const identityEndpoint = "https://iam.cloud.ibm.com/identity/";
 const iamEndpoint = "https://iam.cloud.ibm.com/v2/";
@@ -18,6 +18,7 @@ var xhr = new XMLHttpRequest();
 xhr.onerror = function () {
     console.log("Request failed");
 };
+// Synchronous calls for nodejs
 const asynchXHR = false;
 
 var userId;
