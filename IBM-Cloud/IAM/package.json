@@ -1,0 +1,28 @@
+{
+  "name": "iam-services",
+  "version": "0.1.0",
+  "description": "Modules and services to manage IBM Cloud IAM resources.",
+  "main": "accessGroup-memberEdits.js",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iwinoto/scripts.git"
+  },
+  "keywords": [
+    "IBM",
+    "Cloud",
+    "script"
+  ],
+  "author": "Iwan Winoto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iwinoto/scripts/issues"
+  },
+  "homepage": "https://github.com/iwinoto/scripts#readme"
+}
