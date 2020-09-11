@@ -4,11 +4,11 @@ const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const apiKey = process.env._API_KEY;
 
 // Account = GBS c/o Lygon 1B Pty Ltd
-const accountId = "<Account ID>";
+const accountId = process.env._ACCOUNT_ID;
 // Access group = Security controls research
-const accessGroupId = "<Access Group ID>";
+const accessGroupId = process.env._ACCESS_GROUP_ID;
 // test user
-const userEmail = "<User email address>";
+const userEmail = "Aharon.Rossano@ibm.com";
 
 const identityEndpoint = "https://iam.cloud.ibm.com/identity/";
 const iamEndpoint = "https://iam.cloud.ibm.com/v2/";
@@ -21,6 +21,7 @@ xhr.onerror = function () {
 // Synchronous calls for nodejs
 const asynchXHR = false;
 
+var incidentId;
 var userId;
 var groupMembers;
 var accessToken;
@@ -32,7 +33,7 @@ function getMemberData(memberIAMId) {
                 iam_id: memberIAMId,
                 type: "user"
             }
-        ]
+        ],
     };
 };
 
@@ -59,8 +60,8 @@ function getAccessToken(apiKey) {
 };
 
 // List access groups available to $_ACCESS_TOKEN
-function getAccessGroups(accountId, token) {
-    var url = iamEndpoint + "token/groups?account_id=" + accountId;
+function getAccessGroups(account, token) {
+    var url = iamEndpoint + "token/groups?account_id=" + account;
     xhr = new XMLHttpRequest();
     xhr.open("GET", url, asynchXHR);
     xhr.setRequestHeader("Authorization", "Bearer " + token);
@@ -80,9 +81,10 @@ function getAccessGroups(accountId, token) {
 };
 
 // List access group members
-function getAccessGroupMembers(accessGroupId, token) {
+function getAccessGroupMembers(groupId, token) {
     var members;
-    var url = iamEndpoint + "groups/" + accessGroupId + "/members?verbose=true";
+    var url = iamEndpoint + "groups/" + groupId + "/members?verbose=true";
+    console.log(url);
     xhr = new XMLHttpRequest();
     xhr.open("GET", url, asynchXHR);
     if (xhr.getRequestHeader("Authorization") != "Bearer " + token){
@@ -131,7 +133,7 @@ function getUserId(email, account, token) {
 }
 
 // Add member to access group
-function addAccessGroupMember(userId, groupId, token) {
+function addAccessGroupMember(incident, userId, groupId, token) {
     var url = iamEndpoint + "groups/" + groupId + "/members";
     
     xhr = new XMLHttpRequest();
@@ -139,6 +141,7 @@ function addAccessGroupMember(userId, groupId, token) {
     xhr.setRequestHeader("Authorization", "Bearer " + token);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Transaction-Id", incident);
 
     xhr.onload = function () {
         if (this.status != 207) {
@@ -151,13 +154,14 @@ function addAccessGroupMember(userId, groupId, token) {
 }
 
 // Delete member from access group
-function deleteAccessGroupMember(userId, groupId, token) {
+function deleteAccessGroupMember(incident, userId, groupId, token) {
     var url = iamEndpoint + "groups/" + groupId + "/members/" + userId;
     xhr = new XMLHttpRequest();
     xhr.open("DELETE", url, asynchXHR);
     xhr.setRequestHeader("Authorization", "Bearer " + token);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Transaction-Id", incident);
 
     xhr.onload = function () {
         if (this.status != 204) {
@@ -171,6 +175,7 @@ function deleteAccessGroupMember(userId, groupId, token) {
 
 // Test case
 accessToken = getAccessToken(apiKey);
+incidentId = "TEST-Incident ID: INC" + (Math.floor(Math.random() * 1000000)).toString();
 
 groupMembers = getAccessGroupMembers(accessGroupId, accessToken);
 console.log("\nMembers of Access Group " + accessGroupId + " : ");
@@ -181,7 +186,7 @@ for (member of groupMembers){
 userId = getUserId(userEmail, accountId, accessToken);
 
 console.log("\nAdding member " + userId + " to group ID " + accessGroupId);
-addAccessGroupMember(userId, accessGroupId, accessToken)
+addAccessGroupMember(incidentId, userId, accessGroupId, accessToken)
 groupMembers = getAccessGroupMembers(accessGroupId, accessToken);
 console.log("\nMembers of Access Group " + accessGroupId + " : ");
 for (member of groupMembers){
@@ -189,7 +194,7 @@ for (member of groupMembers){
 };
 
 console.log("\nDeleting member " + userId + " from group ID " + accessGroupId);
-deleteAccessGroupMember(userId, accessGroupId, accessToken);
+deleteAccessGroupMember(incidentId, userId, accessGroupId, accessToken);
 groupMembers = getAccessGroupMembers(accessGroupId, accessToken);
 console.log("\nMembers of Access Group " + accessGroupId + " : ");
 for (member of groupMembers){
