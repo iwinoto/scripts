@@ -8,7 +8,7 @@ const accountId = process.env._ACCOUNT_ID;
 // Access group = Security controls research
 const accessGroupId = process.env._ACCESS_GROUP_ID;
 // test user
-const userEmail = "Aharon.Rossano@ibm.com";
+const userEmail = "<User to add / remove>";
 
 const identityEndpoint = "https://iam.cloud.ibm.com/identity/";
 const iamEndpoint = "https://iam.cloud.ibm.com/v2/";
