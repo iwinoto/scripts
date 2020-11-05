@@ -35,7 +35,7 @@ getAccessToken () {
 
 getComponents() {
   #echo "Getting IBP components."
-  _COMPONENTS=$(curl -s -X GET $_API_ENDPOINT/ak/api/v1/components \
+  _COMPONENTS=$(curl -s -X GET $_API_ENDPOINT/ak/api/v2/components \
     -H "Content-Type: application/json" \
        -H "Authorization: Bearer $_TOKEN")
     
