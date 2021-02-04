@@ -6,9 +6,12 @@
 # List of Infrastructure permissions grouped by user.
 
 for ID in $(ibmcloud sl user list --output json | jq '.[] | .id'); do
+    echo
     echo ID = $ID
-    USER_EMAIL=$(ibmcloud sl user detail $ID | awk '$0 ~ /Email/ {print $2}' -)
-    echo User ID = $USER_EMAIL
+    USER_DETAILS=$(ibmcloud sl user detail $ID)
+    echo $(echo $USER_DETAILS | awk '$0 ~ /Name/ {print $0}' -)
+    echo $(echo $USER_DETAILS | awk '$0 ~ /Email/ {print $0}' -)
+    # echo User ID = $USER_EMAIL
     ibmcloud sl user permissions $ID | awk '$0 ~ /true/ {print $0}' -
 done
 
