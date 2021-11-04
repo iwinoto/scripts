@@ -1,0 +1,259 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "access_group": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by_id": {
+              "type": "string"
+            },
+            "last_modified_at": {
+              "type": "string"
+            },
+            "last_modified_by_id": {
+              "type": "string"
+            },
+            "href": {
+              "type": "string"
+            },
+            "is_federated": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "description",
+            "created_at",
+            "created_by_id",
+            "last_modified_at",
+            "last_modified_by_id",
+            "href",
+            "is_federated"
+          ]
+        },
+        "policies": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "subjects": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "attributes": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "value"
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "attributes"
+                      ]
+                    }
+                  ]
+                },
+                "roles": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "role_id": {
+                          "type": "string"
+                        },
+                        "display_name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "role_id",
+                        "display_name",
+                        "description"
+                      ]
+                    }
+                  ]
+                },
+                "resources": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "attributes": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "operator": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "operator",
+                                "value"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "operator": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "operator",
+                                "value"
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "attributes"
+                      ]
+                    }
+                  ]
+                },
+                "href": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "created_by_id": {
+                  "type": "string"
+                },
+                "last_modified_at": {
+                  "type": "string"
+                },
+                "last_modified_by_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "subjects",
+                "roles",
+                "resources",
+                "href",
+                "created_at",
+                "created_by_id",
+                "last_modified_at",
+                "last_modified_by_id"
+              ]
+            }
+          ]
+        },
+        "users": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "iam_id": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "href": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "created_by_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "iam_id",
+                "type",
+                "name",
+                "email",
+                "description",
+                "href",
+                "created_at",
+                "created_by_id"
+              ]
+            }            
+          ]
+        }
+      },
+      "required": [
+        "access_group",
+        "policies",
+        "users"
+      ]
+    }
+  ]
+}
