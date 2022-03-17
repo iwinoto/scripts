@@ -65,8 +65,13 @@ echo "${ALL_ACCOUNT_USERS_ACCESS_LIST}"
 
 echo "\nDONE!\n$(date)" >> UsersByAccessGroup-progress.txt
 
+## jq snippets to create CSV files
+
+### Export users with access groups to CSV
 # flatten structure to array of users with access group names
 # jq '[.[] | .access_group.name as $group_name | .users[] | . += {"access_group_name":$group_name} | {name, email, access_group_name}] | .'
 
 # Now convert to CSV of users and access group names
 # jq -r '(map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv'
+
+### Export access group policies
