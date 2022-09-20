@@ -1,0 +1,18 @@
+* Detecting operating system
+* Creating sysdig-agent clusterrole and binding
+clusterrole.rbac.authorization.k8s.io/sysdig-agent unchanged
+kubectl create clusterrolebinding failed!
+Error from server (AlreadyExists): clusterrolebindings.rbac.authorization.k8s.io "sysdig-agent" already exists. Continuing...
+* Creating sysdig-agent secret using the ACCESS_KEY provided
+* Retreiving the IKS Cluster ID and Cluster Name
+* Setting cluster name as ANB-Kub/bpjenr1s0i6csel3otg0
+* Setting ibm.containers-kubernetes.cluster.id bpjenr1s0i6csel3otg0
+* Updating agent configmap and applying to cluster
+* Setting tags
+* Setting collector endpoint
+* Adding additional configuration to dragent.yaml
+* Enabling Prometheus
+secret/ibm-observe-icr-io created
+configmap/sysdig-agent created
+* Deploying the sysdig agent
+daemonset.apps/sysdig-agent created
