@@ -13,13 +13,17 @@ for id in $(ibmcloud iam service-ids --output JSON | jq -r '.[] | .id'); do
     echo Testing Service ID = $id;
 # Because group names have spaces that are not handled by Bash 'for',
 # the group names need to be base64 encoded and then decoded for processing.
+# this call only returns policies relating to cloud object storage
+# ibmcloud iam service-policies $id --output json | jq -r '.[].resources[].attributes[] | select(.value=="cloud-object-storage") | @base64'
     for policy in $(ibmcloud iam service-policies $id --output json | jq -r '.[].resources[].attributes[] | select(.value=="cloud-object-storage") | @base64'); do
-        current=$(echo $policy | base64 --decode -);
+        current=$(echo $policy | base64 --decode -i -);
         # echo Testing AG = $current;
         SVC=$(ibmcloud iam access-group-service-ids "$current" --output JSON | \
             jq -r '.[] | select (.id | contains("'${id}'"))');
             if [ -n "$SVC" ]; then
                 GROUPS+="${current}"$'\n'
+            else
+                echo "Access Group ${current} does not contain any service ids"
             fi
     done
 

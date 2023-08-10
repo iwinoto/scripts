@@ -32,7 +32,7 @@ for _group_name_encoded in $(ibmcloud iam access-groups --output json | jq -r '.
         echo "Group count: ${_group_count}"
         echo "Group name encoded: ${_group_name_encoded}"
     fi
-    _group_name=$(echo $_group_name_encoded | base64 --decode -);
+    _group_name=$(echo $_group_name_encoded | base64 --decode -i -);
     if [ "$DEBUG" ]; then
         echo "Access group: ${_group_name}"
     fi
@@ -75,3 +75,6 @@ echo "\nDONE!\n$(date)" >> UsersByAccessGroup-progress.txt
 # jq -r '(map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv'
 
 ### Export access group policies
+# removing users and keeping inflated objects
+# jq '[ .[] | .access_group.name as $name | .access_group.description as $description | {name, description, policies } ] '
+

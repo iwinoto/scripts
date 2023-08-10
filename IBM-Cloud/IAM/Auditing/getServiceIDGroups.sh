@@ -14,7 +14,7 @@ for id in $(ibmcloud iam service-ids --output JSON | jq -r '.[] | .id'); do
 # Because group names have spaces that are not handled by Bash 'for',
 # the group names need to be base64 encoded and then decoded for processing.
     for g in $(ibmcloud iam access-groups --output json | jq -r '.[].name | @base64'); do
-        current=$(echo $g | base64 --decode -);
+        current=$(echo $g | base64 --decode -i -);
         # echo Testing AG = $current;
         SVC=$(ibmcloud iam access-group-service-ids "$current" --output JSON | \
             jq -r '.[] | select (.id | contains("'${id}'"))');
